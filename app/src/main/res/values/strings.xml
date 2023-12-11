@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Project</string>
+
+    <string name="game_1_title">The Legend of Zelda: Breath of the Wild</string>
+    <string name="game_1_description">Explore a vast and vibrant world in this open-air adventure, where you can go almost anywhere and do almost anything.</string>
+    <string name="game_1_score">98</string>
+    <string name="game_1_user_reviews">Over 500,000 positive reviews</string>
+    <string name="game_1_screenshots">image1.jpg,image2.jpg,image3.jpg</string>
+    <string name="game_1_links">https://www.nintendo.com/games/detail/the-legend-of-zelda-breath-of-the-wild-switch/</string>
+
+    <string name="game_2_title">Red Dead Redemption 2</string>
+    <string name="game_2_description">Experience the epic tale of Arthur Morgan and the Van der Linde gang as they rob, fight and steal their way across the vast and unforgiving American frontier.</string>
+    <string name="game_2_score">97</string>
+    <string name="game_2_user_reviews">Over 1 million positive reviews</string>
+    <string name="game_2_screenshots">image4.jpg,image5.jpg,image6.jpg</string>
+    <string name="game_2_links">https://www.rockstargames.com/reddeadredemption2/</string>
+
+    <string name="game_3_title">Elden Ring</string>
+    <string name="game_3_description">Embark on an epic journey through a vast and treacherous world in this action RPG from FromSoftware, creators of the critically acclaimed Dark Souls series.</string>
+    <string name="game_3_score">96</string>
+    <string name="game_3_user_reviews">Over 200,000 positive reviews</string>
+    <string name="game_3_screenshots">image7.jpg,image8.jpg,image9.jpg</string>
+    <string name="game_3_links">https://eldenring.bandainamcoent.eu/</string>
+
 </resources>
