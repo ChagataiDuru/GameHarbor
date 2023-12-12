@@ -6,6 +6,6 @@ data class Game(
     val description: String,
     val score: Int,
     val userReviews: String,
-    val screenshots: String,
+    val screenshots: List<String>,
     val links: String
 )

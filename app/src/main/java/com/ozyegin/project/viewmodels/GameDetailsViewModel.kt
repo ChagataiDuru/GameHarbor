@@ -21,7 +21,7 @@ class GameDetailsViewModel(context: Context) : ViewModel() {
         resources.getString(R.string.game_1_description),
         resources.getString(R.string.game_1_score).toInt(),
         resources.getString(R.string.game_1_user_reviews),
-        resources.getString(R.string.game_1_screenshots),
+        listOf(resources.getString(R.string.game_1_screenshots)),
         resources.getString(R.string.game_1_links),
     )
 
