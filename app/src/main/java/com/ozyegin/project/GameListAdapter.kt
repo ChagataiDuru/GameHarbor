@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ozyegin.project.R
 import com.ozyegin.project.data.Game
 
-class GameListAdapter(private val games: List<Game>) :
+class GameListAdapter(var games: List<Game>) :
     RecyclerView.Adapter<GameListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

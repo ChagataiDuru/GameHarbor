@@ -5,8 +5,7 @@ enum class FragmentName{
     Favorites,Search,Main
 }
 
-class MainFragmentDirections {
-    private lateinit var navController: NavController
+class MainFragmentDirections(private val navController: NavController) {
 
     fun navigateToDestination(from: FragmentName, to: FragmentName) {
         when (from) {

@@ -1,5 +1,6 @@
 package com.ozyegin.project
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -8,47 +9,43 @@ import androidx.navigation.fragment.NavHostFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var navController: NavController
+    private lateinit var navController: NavController;
+    private lateinit var fragControl: MainFragmentDirections;
 
-    private lateinit var gamesButton: Button;
-    private lateinit var playlistButton: Button;
-    private lateinit var reviewsButton: Button;
-    private lateinit var listsButton: Button;
+    private lateinit var mainButton: Button;
+    private lateinit var searchButton: Button;
+    private lateinit var favoritesButton: Button;
     private var currentFragment: FragmentName = FragmentName.Main;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
             this.supportActionBar!!.hide()
-        } catch (e: NullPointerException) {
-        }
+        } catch (e: NullPointerException) {}
+
 
         setContentView(R.layout.activity_main)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        fragControl = MainFragmentDirections(navController)
 
-        gamesButton = findViewById(R.id.games_page_button);
-        playlistButton = findViewById(R.id.playlist_page_button);
-        reviewsButton = findViewById(R.id.reviews_page_button);
-        listsButton = findViewById(R.id.lists_page_button);
+        mainButton = findViewById(R.id.main_button);
+        searchButton = findViewById(R.id.search_button);
+        favoritesButton = findViewById(R.id.favorite_button);
 
-        gamesButton.setOnClickListener {
-            navigateToDestination(currentFragment, FragmentName.Games);
-            currentFragment = FragmentName.Games;
+        mainButton.setOnClickListener {
+            fragControl.navigateToDestination(currentFragment, FragmentName.Main);
+            currentFragment = FragmentName.Main;
         }
-        playlistButton.setOnClickListener {
-            navigateToDestination(currentFragment, FragmentName.Playlist);
-            currentFragment = FragmentName.Playlist;
+        searchButton.setOnClickListener {
+            fragControl.navigateToDestination(currentFragment, FragmentName.Search);
+            currentFragment = FragmentName.Search;
         }
-        reviewsButton.setOnClickListener {
-            navigateToDestination(currentFragment, FragmentName.Reviews);
-            currentFragment = FragmentName.Reviews;
-        }
-        listsButton.setOnClickListener {
-            navigateToDestination(currentFragment, FragmentName.Lists);
-            currentFragment = FragmentName.Lists;
+        favoritesButton.setOnClickListener {
+            fragControl.navigateToDestination(currentFragment, FragmentName.Favorites);
+            currentFragment = FragmentName.Favorites;
         }
 
     }
