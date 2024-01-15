@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "433134735054",
+    "project_id": "gameharbor-aaeff",
+    "storage_bucket": "gameharbor-aaeff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433134735054:android:e869136d4baf4ebb0fca9f",
+        "android_client_info": {
+          "package_name": "com.ozyegin.project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnHq7fyFg17l_vJcnu0YLEqKYbac1Fy5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
