@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ozyegin.project.data.Game
 
 class MainFragment : Fragment() {
 
@@ -81,6 +78,49 @@ class MainFragment : Fragment() {
         adapter = GameListAdapter(dummyGames)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
+
+        // Submit the list of games to the adapter
+        adapter.submitList(dummyGames)
+    }
+}
+data class Game{
+    val id: Int,
+    val title: String,
+    val description: String,
+    val rating: Int,
+    val review: String,
+    val images: List<String>,
+    val url: String
+}
+class GameListAdapter : ListAdapter<Game, GameViewHolder>(GameDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val itemView = inflater.inflate(R.layout.item_game, parent, false)
+        return GameViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
+        val game = getItem(position)
+        holder.bind(game)
     }
 }
 
+class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    fun bind(game: Game) {
+        // Bind your data to the ViewHolder views
+        // Example: itemView.findViewById<TextView>(R.id.textViewTitle).text = game.title
+    }
+}
+
+class GameDiffCallback : DiffUtil.ItemCallback<Game>() {
+
+    override fun areItemsTheSame(oldItem: Game, newItem: Game): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Game, newItem: Game): Boolean {
+        return oldItem == newItem
+    }
+}
