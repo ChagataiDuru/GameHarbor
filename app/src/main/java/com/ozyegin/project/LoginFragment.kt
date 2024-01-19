@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+
 class LoginFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
@@ -19,7 +20,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+        val view = inflater.inflate(R.layout.login_fragment, container, false)
 
         auth = FirebaseAuth.getInstance()
         emailEditText = view.findViewById(R.id.editTextEmail)
@@ -31,7 +32,7 @@ class LoginFragment : Fragment() {
             val password = passwordEditText.text.toString()
 
             auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
+                .addOnCompleteListener(requireActivity()) { task ->
                     if (task.isSuccessful) {
                         // Login successful, you can navigate to the next screen
                         // or perform other actions as needed

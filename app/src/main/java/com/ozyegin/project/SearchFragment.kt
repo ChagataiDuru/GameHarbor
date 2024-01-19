@@ -1,6 +1,6 @@
 package com.ozyegin.project
 
-import GameListAdapter
+import com.ozyegin.project.adapters.GameListAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

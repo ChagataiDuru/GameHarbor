@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_login"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:layout_marginBottom="8dp"/>
+        android:minHeight="48dp"
+        android:importantForAutofill="no"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
         android:layout_below="@id/editTextEmail"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -28,6 +41,7 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:layout_below="@id/editTextPassword"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        tools:ignore="VisualLintButtonSize" />
 
 </RelativeLayout>

@@ -19,12 +19,12 @@ class SignupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_signup, container, false)
+        val view = inflater.inflate(R.layout.signup_fragment, container, false)
 
         auth = FirebaseAuth.getInstance()
         emailEditText = view.findViewById(R.id.editTextEmail)
         passwordEditText = view.findViewById(R.id.editTextPassword)
-        signUpButton = view.findViewById(R.id.buttonSignUp)
+        signUpButton = view.findViewById(R.id.buttonRegister)
 
         signUpButton.setOnClickListener {
             val email = emailEditText.text.toString()
@@ -33,10 +33,13 @@ class SignupFragment : Fragment() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        // Signup successful, you can navigate to the next screen
-                        // or perform other actions as needed
+                        // Signup successful, navigate to main activity
+                        val user = auth.currentUser
+                        // ...
+
                     } else {
                         // Signup failed, handle the error
+
                     }
                 }
         }

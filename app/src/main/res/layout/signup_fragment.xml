@@ -1,33 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:gravity="center"
+    android:background="#FFF"
+    >
 
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="match_parent"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_signup"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="8dp"/>
+        />
 
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_below="@id/editTextEmail"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_width="match_parent">
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/buttonSignUp"
+        android:id="@+id/buttonRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:layout_below="@id/editTextPassword"
+        android:text="Login"
         android:layout_marginTop="16dp"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/buttonGoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Login here"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>
