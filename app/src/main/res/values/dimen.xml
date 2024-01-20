@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="big_margin">30dp</dimen>
+    <dimen name="standard_margin">20dp</dimen>
+    <dimen name="medium_margin">15dp</dimen>
+    <dimen name="small_margin">10dp</dimen>
+    <dimen name="smaller_margin">5dp</dimen>
+    <dimen name="bigger_font_size">24sp</dimen>
+    <dimen name="big_font_size">20sp</dimen>
+    <dimen name="standard_font_size">16sp</dimen>
+    <dimen name="small_font_size">14sp</dimen>
+    <dimen name="smaller_font_size">10sp</dimen>
+    <dimen name="app_bar_height">50dp</dimen>
+</resources>
