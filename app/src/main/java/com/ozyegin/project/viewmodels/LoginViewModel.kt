@@ -11,9 +11,21 @@ class LoginViewModel : ViewModel() {
     // Livedata objects
     val loginSuccessful: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
     val loginException: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
+    val registerSuccessful: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
+    val registerException: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
 
     // Firebase interface
     private val firebaseInterface = FirebaseApi()
+
+    private val registerSuccessfulFunction = Observer<Boolean> {
+        registerSuccessful.value = true
+        clearInterfaceObservers()
+    }
+
+    private val registerExceptionFunction = Observer<Exception> {
+        registerException.value = it
+        clearInterfaceObservers()
+    }
 
     // Login successful
     private val loginSuccessfulFunction = Observer<Boolean> {
@@ -46,11 +58,20 @@ class LoginViewModel : ViewModel() {
         firebaseInterface.loginWithGoogle(data)
     }
 
+    fun createUser(email: String, password: String) {
+        firebaseInterface.createUserSuccessful.observeForever(registerSuccessfulFunction)
+        firebaseInterface.createUserError.observeForever(registerExceptionFunction)
+
+        firebaseInterface.createUser(email, password)
+    }
+
     /**
      * Clear all observers
      */
     private fun clearInterfaceObservers() {
         firebaseInterface.loginSuccessful.removeObserver { }
         firebaseInterface.loginError.removeObserver { }
+        firebaseInterface.createUserSuccessful.removeObserver { }
+        firebaseInterface.createUserError.removeObserver { }
     }
 }

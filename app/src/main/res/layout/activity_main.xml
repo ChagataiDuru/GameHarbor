@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="572dp"
         android:layout_below="@+id/linerLayout"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="1dp"
         app:defaultNavHost="true"
         app:navGraph="@navigation/navigation" />
 
@@ -21,14 +23,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="34dp"
-        android:orientation="vertical">
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/app_name_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GameHarbour"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -37,9 +40,9 @@
             android:id="@+id/verticalLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="1dp"
             android:orientation="horizontal">
 
             <Button
@@ -47,28 +50,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Main Page" />
+                android:layout_marginEnd="1dp"
+                android:text="@string/main_page" />
 
             <Button
                 android:id="@+id/profile_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Profile" />
+                android:text="@string/profile_page"
+                />
 
             <Button
                 android:id="@+id/favorite_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Favorites" />
+                android:text="@string/favorites_page" />
 
             <Button
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Search" />
+                android:text="@string/search_page" />
 
         </LinearLayout>
 

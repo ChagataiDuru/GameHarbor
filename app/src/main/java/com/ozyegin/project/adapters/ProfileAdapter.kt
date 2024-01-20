@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ozyegin.project.R
 import com.ozyegin.project.data.Profile
 
-class ProfileAdapter(private val profileItems: List<Profile>) :
+class ProfileAdapter(private val profileItem: Profile) :
     RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
@@ -17,22 +17,27 @@ class ProfileAdapter(private val profileItems: List<Profile>) :
         return ProfileViewHolder(view)
     }
 
+    override fun getItemCount(): Int {
+        return 1
+    }
+
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
-        val profileItem = profileItems[position]
+        val profileItem = profileItem
         holder.bind(profileItem)
     }
 
-    override fun getItemCount(): Int {
-        return profileItems.size
-    }
-
     inner class ProfileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val titleTextView: TextView = itemView.findViewById(R.id.profileItemTitle)
-        private val valueTextView: TextView = itemView.findViewById(R.id.profileItemValue)
+        private val nameTextView: TextView = itemView.findViewById(R.id.profileName)
+        private val passTextView: TextView = itemView.findViewById(R.id.profilePass)
+        private val dateTextView: TextView = itemView.findViewById(R.id.profileDate)
+        private val emailTextView: TextView = itemView.findViewById(R.id.profileEmail)
+
 
         fun bind(profileItem: Profile) {
-            titleTextView.text = profileItem.title
-            valueTextView.text = profileItem.value
+            nameTextView.text = profileItem.name
+            passTextView.text = profileItem.email
+            dateTextView.text = profileItem.dateofreg
+            emailTextView.text = profileItem.email
         }
     }
 }

@@ -20,6 +20,7 @@ object GameDetailClass {
      * Transforms a IGDB game object to a useful GameListEntity object
      */
     fun convertFromGameToGameListEntity(game: Game): GameListEntity {
+        println("Converting game to GameListEntity")
         return GameListEntity(game.id.toString(), game.name, game.totalRating.toInt(),
             buildGenresString(game.genresList), buildPlatformsString(game.platformsList),
             game.cover.imageId)

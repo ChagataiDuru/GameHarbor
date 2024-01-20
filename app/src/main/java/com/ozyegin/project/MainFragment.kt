@@ -1,6 +1,5 @@
 package com.ozyegin.project
 
-import com.ozyegin.project.adapters.GameListAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,27 +7,44 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.ozyegin.project.data.GameList as GameListEntity
 import com.ozyegin.project.viewmodels.MainViewModel
-
+import com.ozyegin.project.databinding.FragmentMainBinding
+import com.ozyegin.project.adapters.GameListAdapter
+import androidx.recyclerview.widget.DefaultItemAnimator
 class MainFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: GameListAdapter
-    private lateinit var viewModel: MainViewModel
-    private val games = mutableListOf<GameListEntity>()
+    // ViewBinding
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
+    // ViewModel
+    private val viewModel: MainViewModel by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (savedInstanceState == null) {
+            LoadingDialog().show(childFragmentManager, "progress")
+            println("Loading games")
+            viewModel.getTrendingGames()
+        }
 
-        // Error getting trending games
         val getTrendingGamesError = Observer<Exception> {
             (childFragmentManager.findFragmentByTag("progress") as? DialogFragment)?.dismiss()
-
+            println(it.message)
             Toast.makeText(
                 requireContext(),
                 requireActivity().getString(R.string.error_unknown),
@@ -47,27 +63,48 @@ class MainFragment : Fragment() {
         viewModel.getTrendingGamesSuccessful.observe(this, getTrendingGamesSuccessful)
     }
 
-    private fun setRecycleViewList(it: List<GameListEntity>) {
-        games.clear()
-        games.addAll(it)
-        adapter.notifyDataSetChanged()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setRecycleViewList(emptyList())
+    }
 
-        // Initialize RecyclerView
-        recyclerView = view.findViewById(R.id.recycler_view)
-        adapter = GameListAdapter(games)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
+    override fun onResume() {
+        super.onResume()
+        if (viewModel.getTrendingGamesSuccessful.value != null) {
+            setRecycleViewList(viewModel.getTrendingGamesSuccessful.value!!)
+            (childFragmentManager.findFragmentByTag("progress") as? DialogFragment)?.dismiss()
+        }
+    }
+
+
+    private fun setRecycleViewList(gamesList: List<GameListEntity>) {
+        val mAdapter = GameListAdapter(gamesList)
+        val mLayoutManager = LinearLayoutManager(requireContext())
+
+        mAdapter.setViewItemInterface(object : GameListAdapter.RecyclerViewGameInterface {
+            override fun onItemClick(gameListEntity: GameListEntity) {
+                val fragment = GameDetailsFragment()
+
+                val arguments = Bundle()
+                arguments.putString("gameId", gameListEntity.id)
+
+                fragment.arguments = arguments
+                val fragmentTransaction: FragmentTransaction =
+                    activity!!.supportFragmentManager.beginTransaction()
+
+                fragmentTransaction.replace(R.id.nav_host_fragment, fragment)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+        })
+
+        binding.recyclerView.layoutManager = mLayoutManager
+        binding.recyclerView.itemAnimator = DefaultItemAnimator()
+        binding.recyclerView.adapter = mAdapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
-

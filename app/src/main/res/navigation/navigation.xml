@@ -23,32 +23,6 @@
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
-
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.ozyegin.project.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/login_fragment">
-        <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_signupFragment"
-            app:destination="@id/signupFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signupFragment"
-        android:name="com.ozyegin.project.SignupFragment"
-        android:label="SignupFragment"
-        tools:layout="@layout/signup_fragment">
-        <action
-            android:id="@+id/action_signupFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_signupFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ozyegin.project.ProfileFragment"

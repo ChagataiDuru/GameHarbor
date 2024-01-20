@@ -38,27 +38,21 @@ class ProfileFragment : Fragment() {
         return view
     }
 
-    private fun getProfileData(): List<Profile> {
+    private fun getProfileData(): Profile {
         val randomPassword = generateRandomPassword()
-        val hashedEmail = hashString(user.email ?: "")
 
         val signUpDate = user.metadata?.creationTimestamp?.let { timestamp ->
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = timestamp
             calendar.time
         } ?: Date()
-
-        return listOf(
-            Profile("Profile Picture", "Display profile picture here"),
-            Profile("Email", hashedEmail),
-            Profile("Random Password", randomPassword),
-            Profile("Date of Signup", signUpDate.toString())
+        println(user.email)
+        return Profile(
+            user.email ?: "",
+            randomPassword,
+            user.displayName ?: "",
+            signUpDate.toString(),
         )
-    }
-
-    private fun hashString(input: String): String {
-        val bytes = MessageDigest.getInstance("SHA-256").digest(input.toByteArray())
-        return bytes.joinToString("") { "%02x".format(it) }
     }
 
     private fun generateRandomPassword(): String {

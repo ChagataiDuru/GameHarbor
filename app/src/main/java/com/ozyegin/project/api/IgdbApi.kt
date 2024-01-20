@@ -5,12 +5,14 @@ import com.api.igdb.apicalypse.APICalypse
 import com.api.igdb.apicalypse.Sort
 import com.api.igdb.exceptions.RequestException
 import com.api.igdb.request.IGDBWrapper
+import com.api.igdb.request.IGDBWrapper.apiProtoRequest
 import com.api.igdb.request.games
 import com.ozyegin.project.data.GameDetail as GameDetailEntity
 import com.ozyegin.project.data.GameList as GameListEntity
 import com.ozyegin.project.data.GameDetailClass as GameEntityTransformer
 import com.ozyegin.project.util.IgdbConts
 import com.ozyegin.project.util.OAuthKeys
+import proto.Game
 
 class IgdbRepository {
 
@@ -47,18 +49,31 @@ class IgdbRepository {
      */
      fun getTrendingGames() {
         IGDBWrapper.setCredentials(OAuthKeys.clientID, OAuthKeys.accessToken)
-        // Trending games are games with rating>60 and released in last 2 weeks
+        println("Trending games are games with rating>60 and released in last 2 weeks")
         val apicalypse = APICalypse()
             .fields(IgdbConts.GAME_LIST_ENTITY_FIELDS)
-            .where("total_rating>=60 & first_release_date>=1650391492")
             .limit(10)
-            .sort("hypes", Sort.DESCENDING)
-
+            .offset(0)
+            .search("Halo")
+            .sort("release_dates.date", Sort.ASCENDING)
+            .where("platforms = 48")
+        val igdbGames: List<Game>
         try {
-            val igdbGames = IGDBWrapper.games(apicalypse)
+            println("Getting trending games")
+            igdbGames = IGDBWrapper.games(apicalypse)
+            println("Got trending games")
+        } catch (e: Exception) {
+            getTrendingGamesError.value = e
+            return
+        }
+        try {
+            println(igdbGames.size)
+            println(igdbGames.get(0).name)
+            println(igdbGames.get(0).totalRating)
             getTrendingGamesSuccessful.value = igdbGames.sortedByDescending { it.totalRating }.map { game ->
                 GameEntityTransformer.convertFromGameToGameListEntity(game)
             }
+            println(getTrendingGamesSuccessful.value)
 
         } catch(e: RequestException) {
             getTrendingGamesError.value = e

@@ -45,7 +45,7 @@ class SearchFragment : Fragment() {
         val adapter = GameListAdapter(emptyList())
 
         viewModel.getSearchResultSuccessful.observe(viewLifecycleOwner) {results ->
-            adapter.games = results
+            //adapter.games = results
             recyclerView = view.findViewById(R.id.game_list)
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
