@@ -32,19 +32,19 @@ class SearchFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.searchGames(query!!)
+                viewModel.searchGamesByName(query.orEmpty())
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.searchGames(newText.orEmpty())
+                viewModel.searchGamesByName(newText.orEmpty())
                 return false
             }
         })
 
         val adapter = GameListAdapter(emptyList())
 
-        viewModel.searchResults.observe(viewLifecycleOwner) { results ->
+        viewModel.getSearchResultSuccessful.observe(viewLifecycleOwner) {results ->
             adapter.games = results
             recyclerView = view.findViewById(R.id.game_list)
             recyclerView.layoutManager = LinearLayoutManager(context)

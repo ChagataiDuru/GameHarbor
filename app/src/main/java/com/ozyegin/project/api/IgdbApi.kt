@@ -6,28 +6,28 @@ import com.api.igdb.apicalypse.Sort
 import com.api.igdb.exceptions.RequestException
 import com.api.igdb.request.IGDBWrapper
 import com.api.igdb.request.games
-import com.ozyegin.project.data.GameDetailEntity
-import com.ozyegin.project.data.GameListEntity
-import com.ozyegin.project.data.GameDetailClass
+import com.ozyegin.project.data.GameDetail as GameDetailEntity
+import com.ozyegin.project.data.GameList as GameListEntity
+import com.ozyegin.project.data.GameDetailClass as GameEntityTransformer
 import com.ozyegin.project.util.IgdbConts
 import com.ozyegin.project.util.OAuthKeys
 
 class IgdbRepository {
 
-    // MutableLiveData variables for IGDB games
-    override val getTrendingGamesSuccessful: MutableLiveData<List<GameListEntity>> by lazy { MutableLiveData<List<GameListEntity>>() }
-    override val getTrendingGamesError: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
-    override val getSearchResultSuccessful: MutableLiveData<List<GameListEntity>> by lazy { MutableLiveData<List<GameListEntity>>() }
-    override val getSearchResultError: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
-    override val getGameDetailSuccessful: MutableLiveData<GameDetailEntity> by lazy { MutableLiveData<GameDetailEntity>() }
-    override val getGameDetailError: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
-    override val getGamesNamesError: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
+     // MutableLiveData variables for IGDB games
+     val getTrendingGamesSuccessful: MutableLiveData<List<GameListEntity>> by lazy { MutableLiveData<List<GameListEntity>>() }
+     val getTrendingGamesError: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
+     val getSearchResultSuccessful: MutableLiveData<List<GameListEntity>> by lazy { MutableLiveData<List<GameListEntity>>() }
+     val getSearchResultError: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
+     val getGameDetailSuccessful: MutableLiveData<GameDetailEntity> by lazy { MutableLiveData<GameDetailEntity>() }
+     val getGameDetailError: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
+     val getGamesNamesError: MutableLiveData<Exception> by lazy { MutableLiveData<Exception>() }
 
 
     /**
      * Gets the data of the selected game
      */
-    override fun getGameListData(gameId: String) : GameListEntity {
+     fun getGameListData(gameId: String) : GameListEntity {
         IGDBWrapper.setCredentials(OAuthKeys.clientID, OAuthKeys.accessToken)
         val apicalypse = APICalypse()
             .fields(IgdbConts.GAME_LIST_ENTITY_FIELDS)
@@ -45,7 +45,7 @@ class IgdbRepository {
     /**
      * Gets the trending games
      */
-    override fun getTrendingGames() {
+     fun getTrendingGames() {
         IGDBWrapper.setCredentials(OAuthKeys.clientID, OAuthKeys.accessToken)
         // Trending games are games with rating>60 and released in last 2 weeks
         val apicalypse = APICalypse()
@@ -68,7 +68,7 @@ class IgdbRepository {
     /**
      * Gets the details of the selected game
      */
-    override fun getGameDetail(gameId: String) {
+     fun getGameDetail(gameId: String) {
         IGDBWrapper.setCredentials(OAuthKeys.clientID, OAuthKeys.accessToken)
         val apicalypse = APICalypse()
             .fields(IgdbConts.GAME_DETAIL_ENTITY_FIELDS)

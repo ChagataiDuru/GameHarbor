@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ozyegin.project.R
-import com.ozyegin.project.data.Game
+import com.ozyegin.project.data.GameList as GameListEntity
 
-class GameListAdapter(var games: List<Game>) :
+class GameListAdapter(var games: List<GameListEntity>) :
     RecyclerView.Adapter<GameListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,19 +20,8 @@ class GameListAdapter(var games: List<Game>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val game = games[position]
-
-        // Load image using your preferred image loading library (Glide, Picasso, etc.)
-        // Example using Glide:
-        // Glide.with(holder.itemView)
-        //    .load(game.imageUrl)
-        //    .into(holder.gameImage)
-
-        holder.gameTitle.text = game.title
-        holder.gameScore.text = "Score: ${game.score}"
-
-        holder.itemView.setOnClickListener {
-            // Handle item click event
-        }
+        holder.gameTitle.text = game.name
+        holder.gameScore.text = game.rating.toString()
     }
 
     override fun getItemCount(): Int = games.size

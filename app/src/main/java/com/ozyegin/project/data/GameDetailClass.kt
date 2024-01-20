@@ -8,6 +8,8 @@ import proto.Screenshot
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import com.ozyegin.project.data.GameDetail as GameDetailEntity
+import com.ozyegin.project.data.GameList as GameListEntity
 
 /**
  * Class to transform IGDB entities to useful entities for the app
