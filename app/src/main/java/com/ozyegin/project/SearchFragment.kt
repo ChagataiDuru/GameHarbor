@@ -28,13 +28,9 @@ class SearchFragment : Fragment() {
 
     private var _binding: SearchFragmentBinding? = null
     private val binding get() = _binding!!
-
     // ViewModel
     private val viewModel: SearchViewModel by viewModels()
 
-    /**
-     * Function launched with the creation of the view
-     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

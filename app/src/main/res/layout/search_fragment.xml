@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="@string/empty_list"
+        android:text="No results found"
         android:textSize="@dimen/big_font_size"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

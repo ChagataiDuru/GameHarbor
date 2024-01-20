@@ -26,8 +26,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ozyegin.project.ProfileFragment"
-        android:label="ProfileFragment"
-        tools:layout="@layout/profile_fragment">
+        android:label="ProfileFragment">
         <action
             android:id="@+id/action_profileFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -48,7 +47,7 @@
             app:destination="@id/gameDetailsFragment">
             <argument
                 android:name="gameId"
-                app:argType="long" />
+                app:argType="string" />
         </action>
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"

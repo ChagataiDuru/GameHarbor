@@ -20,7 +20,11 @@ object GameDetailClass {
      * Transforms a IGDB game object to a useful GameListEntity object
      */
     fun convertFromGameToGameListEntity(game: Game): GameListEntity {
-        println("Converting game to GameListEntity")
+        println(game.name)
+        println(game.totalRating.toInt())
+        println(buildGenresString(game.genresList))
+        println(buildPlatformsString(game.platformsList))
+        println(game.cover.imageId)
         return GameListEntity(game.id.toString(), game.name, game.totalRating.toInt(),
             buildGenresString(game.genresList), buildPlatformsString(game.platformsList),
             game.cover.imageId)
@@ -80,7 +84,7 @@ object GameDetailClass {
     private fun convertDateToString(date: Timestamp): String {
         val formattedDate = Instant
             .ofEpochSecond( date.seconds, date.nanos.toLong())
-            .atZone( ZoneId.of( "America/Montreal" ) )
+            .atZone( ZoneId.of( "Europe/Istanbul" ) )
             .toLocalDate()
         return formattedDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
     }

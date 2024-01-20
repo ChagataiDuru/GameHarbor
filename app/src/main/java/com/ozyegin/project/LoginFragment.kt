@@ -63,8 +63,32 @@ class LoginFragment : Fragment() {
             ).show()
         }
 
+        // Success in the register
+        val registerSuccessful = Observer<Boolean> { registerSuccessful ->
+            if (registerSuccessful) {
+                val intent = Intent(activity, MainActivity::class.java)
+                (childFragmentManager.findFragmentByTag("progress") as? DialogFragment)?.dismiss()
+                startActivity(intent)
+                requireActivity().finish()
+            }
+        }
+
+        // Error in the register
+        val registerException = Observer<Exception> {
+            (childFragmentManager.findFragmentByTag("progress") as? DialogFragment)?.dismiss()
+
+            Toast.makeText(
+                requireContext(),
+                requireActivity().getString(R.string.error_unknown),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+
         viewModel.loginSuccessful.observe(this, loginSuccessful)
         viewModel.loginException.observe(this, loginException)
+        viewModel.registerSuccessful.observe(this, registerSuccessful)
+        viewModel.registerException.observe(this, registerException)
     }
 
     override fun onCreateView(
@@ -124,9 +148,6 @@ class LoginFragment : Fragment() {
         }
     }
 
-    /**
-     * Validates the login fields
-     */
     private fun validateLogin(): Boolean {
         val email = binding.editTextEmail.editText?.text.toString()
         val passwd = binding.editTextPassword.editText?.text.toString()
