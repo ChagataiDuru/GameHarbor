@@ -12,7 +12,7 @@
     <string name="restore_password">Restore password</string>
     <string name="login">Login</string>
     <string name="login_google">Login with Google</string>
-    <string name="register">Sing in</string>
+    <string name="register">Register</string>
     <string name="close">Close</string>
     <string name="logout">Logout</string>
     <string name="add_to_list">Add to list</string>
@@ -70,4 +70,9 @@
     <string name="error_user_already_has_list">User already has this list</string>
     <string name="error_rate_incorrect">The rate must be between 0 and 100</string>
     <string name="error_no_result">The search has not produced any results</string>
+    <string name="main_page">Main Page</string>
+    <string name="profile_page">Profile</string>
+    <string name="favorites_page">Favorites  </string>
+    <string name="search_page">Search  </string>
+    <string name="add_to_favorites">Add To Favorites</string>
 </resources>
