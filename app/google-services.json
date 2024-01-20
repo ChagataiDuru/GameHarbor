@@ -12,7 +12,20 @@
           "package_name": "com.ozyegin.project"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "339548641766-3qc9ip7mch71nu0ehh56d7prr6op986c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ozyegin.project",
+            "certificate_hash": "bc514c0add3fc34fd6f99580d2e6685fb2d37ece"
+          }
+        },
+        {
+          "client_id": "339548641766-vafk206rug6lqakr35tm5ltcl3v3i74s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBxMrR6Qie1XHjNaRrGHdQFm3pId9Fbr-k"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339548641766-vafk206rug6lqakr35tm5ltcl3v3i74s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

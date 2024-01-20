@@ -145,4 +145,20 @@
     <color name="material_brown_300">#ffa1887f</color>
     <color name="material_brown_500">#ff795548</color>
     <color name="material_brown_700">#ff5d4037</color>
+
+    <color name="primary">#673ab7</color>
+    <color name="primaryDark">#320b86</color>
+    <color name="primaryLight">#9a67ea</color>
+    <color name="secondary">#ff6f00</color>
+    <color name="secondaryDark">#c43e00</color>
+    <color name="secondaryLight">#ffa040</color>
+    <color name="gray">#757575</color>
+    <color name="blue">#0091ea</color>
+    <color name="green">#00c853</color>
+    <color name="red">#d50000</color>
+    <color name="lightBackground">#FFFBFE</color>
+    <color name="onLightBackground">#1C1B1F</color>
+    <color name="darkBackground">#1d1b1f</color>
+    <color name="onDarkBackground">#e6e1e5</color>
+
 </resources>
