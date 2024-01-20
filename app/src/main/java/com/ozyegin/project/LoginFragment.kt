@@ -94,7 +94,10 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            auth
+            viewModel.createUser(
+                binding.editTextEmail.editText?.text.toString(),
+                binding.editTextPassword.editText?.text.toString()
+            )
         }
 
         binding.btnRestorePassword.setOnClickListener {
